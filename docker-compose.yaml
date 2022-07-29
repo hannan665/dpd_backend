@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  web:
+    image: hannanhafeez0/dpd_backend:latest
+#    build: .
+    container_name: dpd_backend_new
+    command: python manage.py runserver 0.0.0.0:8080
+#    volumes:
+#      - .:/app
+    ports:
+      - 8080:8080
+    env_file:
+      - ./.env
+    depends_on:
+      - dpd_db
+  dpd_db:
+    image: postgres:13.0-alpine
+    container_name: dpd_db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: dpd_main_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5431:5432
+
+volumes:
+  postgres-data:
+
+
+#version: '3.8'
+#
+#services:
+#  webServer:
+#    image: nginx:1.17.10
+#    container_name: webServer
+#    depends_on:
+#      - api
+#    volumes:
+#      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+#
+#    ports:
+#      - 3200:3200
+#
+#  api:
+#    image: api
+#    container_name: api
+#    build:
+#      context: .
+#    command: python manage.py runserver 0.0.0.0:5001
+#    ports:
+#      - 5001:5001
+#    env_file:
+#      - ./.env
+#    restart: on-failure
+#    depends_on:
+#      - db
+#    volumes:
+#      - .:/app
+#
+#  # add service db
+#  db:
+#    image: postgres:13.0-alpine
+#    container_name: db
+#    environment:
+#      POSTGRES_DB: hello_django_dev
+#      POSTGRES_USER: hello_django
+#      POSTGRES_PASSWORD: hello_django
+#      POSTGRES_HOST: db
+#      POSTGRES_PORT: 5432
+#    volumes:
+#      - postgres-data:/var/lib/postgresql/data/
+#
+#
+#
+#volumes:
+#  postgres-data:
