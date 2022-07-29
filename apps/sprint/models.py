@@ -21,6 +21,6 @@ class Sprint(models.Model):
         app_label = 'sprint'
 
     def __str__(self):
-        # if self.title == None:
-        #     return " title IS NULL"
-        return self.title
+        if not self.name:
+            return " title IS NULL"
+        return self.name

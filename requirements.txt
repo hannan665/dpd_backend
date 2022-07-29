@@ -11,7 +11,6 @@ identify==2.5.2
 mccabe==0.6.1
 nodeenv==1.7.0
 Pillow==9.2.0
-pkg_resources==0.0.0
 platformdirs==2.5.2
 pre-commit==2.20.0
 psycopg2==2.9.3
