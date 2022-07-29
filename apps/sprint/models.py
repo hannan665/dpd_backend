@@ -1,9 +1,8 @@
 import uuid
 
 from django.db import models
-
-# Create your models here
 from django.utils.translation import gettext as _
+# Create your models here
 
 
 class Sprint(models.Model):

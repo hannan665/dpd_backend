@@ -3,14 +3,14 @@ import uuid
 from django.db import models
 from django.utils.translation import gettext as _
 
-# Create your models here.
 from apps.user.models import User
+# Create your models here.
 
 
 class Project(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=556, blank=True, null=True)
-    lead = models.ForeignKey(User, max_length=256, on_delete=models.CASCADE,null=True , blank=True)
+    lead = models.ForeignKey(User, max_length=256, on_delete=models.CASCADE, null=True, blank=True)
     members = models.ManyToManyField(User, blank=True, related_name="project_members")
     description = models.TextField(_("Description"), blank=True, null=True)
     type = models.CharField(max_length=556, blank=True, null=True)
